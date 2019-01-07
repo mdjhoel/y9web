@@ -1,17 +1,107 @@
-<html>
-Hello Cruel Crazy World
+<!-- Compiled and minified CSS -->
+<!--<link rel="stylesheet" href="materialize.css">-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-<table border="1px">
-	<tr>
-		<td>Connor McDavid</td><td>EDM</td>
-	</tr>
-	<tr>
-		<td>Sidney Crosby</td><td>PIT</td>
-	</tr>
-	<tr>
-		<td>Mitch Marner</td><td>TOR</td>
-	</tr>
-</table>
+<!-- Compiled and minified JavaScript -->
+<!-- <script src="materialize.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
-</html>
+<!-- load the data -->
+<!-- <script type="text/javascript" src="dbe.js"></script> -->
+<script type="text/javascript" src="https://drive.google.com/uc?export=view&id=1yFlKtzL9vmRXKux1Wrf5ZK8oEhG2AnvL"></script>
+
+
+
+<script>
+	
+	function factTable() {
+	   
+	    var mytable = ""
+	    mytable = mytable + "<table class='table striped'>"
+		mytable = mytable + "<th>Country</th><th>Data</th><th>Value</th>"
+		
+	    for (i = 0; i < dbe.length; i++) {
+			if (dbe[i].dims.COUNTRY == "Afghanistan" || dbe[i].dims.COUNTRY == "Canada") {
+				mytable = mytable + "<tr>";
+				  mytable = mytable + "<td>" + dbe[i].dims.COUNTRY + "</td>";
+				  mytable = mytable + "<td>" + dbe[i].dims.ENVCAUSE + "</td>";
+				  mytable = mytable + "<td>" + dbe[i].Value + "</td>";
+				mytable = mytable + "</tr>";
+			} 
+	    }
+  
+	    mytable = mytable + "</table>"
+  
+	    mydiv = document.getElementById("mytable");
+	    mydiv.innerHTML = mytable;
+	}
+	
+	function myFunction(goal) {
+ 
+	  mydiv = document.getElementById("demo");
+	  mydiv.innerHTML = dbe[4].dims.GHO;
+	  var canvas = document.getElementById("myCanvas");
+	  var ctx = canvas.getContext("2d");
+  
+  	  var canarray = [];
+  	  for (i = 0; i<dbe.length; i++) {
+		  if (dbe[i].dims["COUNTRY"] == "Canada" ) {
+			  canarray.push(dbe[i]);
+		  }
+  	  }
+  
+	  if (goal == "Infections") {
+	    var mycolor = "#FF0000";
+		var x = dbe[4].Value;
+		var xcan = canarray[4].Value;
+	  } else if (goal == "Disease") {
+	    var mycolor = "#ff9900";
+		var x = dbe[5].Value;
+		var xcan = canarray[5].Value;
+	  } else {
+  	    var mycolor = "green";
+  		var x = dbe[6].Value;
+		var xcan = canarray[6].Value;
+	  }
+	  
+	  		console.log(xcan)
+  
+	  ctx.fillStyle = "#ffffff";
+	  ctx.fillRect(0,0,1000,50);
+	  ctx.fillStyle = mycolor;
+	  ctx.fillRect(0,0,x*2,50);
+	  ctx.fillStyle = "pink";
+	  ctx.fillRect(x*2,0,xcan*2,50);
+	  ctx.fillRect(0,55,75,50);
+  
+	  ctx.fillStyle = "#ffffff";
+	  ctx.font = "15px Arial";
+	  ctx.fillText(goal + " (" + x + ")",10,25);
+	  ctx.fillStyle = "black";
+	  ctx.fillText(xcan,x*2+10,25);
+	  ctx.fillText("Canada",10,85);
+
+	}
+
+</script>
+		
+<div class="container">
+   <h4>Afghanistan WHO Data</h4>
+   <a onclick="myFunction('Infections')" class="waves-effect waves-light red btn">Infections</a>
+   <a onclick="myFunction('Disease')" class="waves-effect waves-light amber accent-4 btn">Disease</a>
+   <a onclick="myFunction('Injuries')" class="waves-effect waves-light green btn">Injuries</a>
+
+   <p id="demo"></p>
+   <canvas id="myCanvas" width="1000" height="100">
+      Your browser does not support the canvas element.
+   </canvas>
+
+   <p>Awesome <a href="http://apps.who.int/gho/data/node.home" target="_blank">JSON</a> databases from WHO</p>
+   <h3>Environmental Causes of Death Table (WHO)</h3>
+   <div id="mytable">
+      <script>factTable();</script>
+   </div>
+
+   <p id="datatest"></p>
+</div>
