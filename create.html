@@ -1,24 +1,24 @@
-<!-- Compiled and minified CSS -->
-<!--<link rel="stylesheet" href="materialize.css">-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-<!-- Compiled and minified JavaScript -->
-<!-- <script src="materialize.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
 <!-- load the data -->
-<!-- <script type="text/javascript" src="dbe.js"></script> -->
-<script type="text/javascript" src="https://drive.google.com/uc?export=view&id=1yFlKtzL9vmRXKux1Wrf5ZK8oEhG2AnvL"></script>
+<!--<<script type="text/javascript" src="dbe.js"></script> -->
+script type="text/javascript" src="https://drive.google.com/uc?export=view&id=1yFlKtzL9vmRXKux1Wrf5ZK8oEhG2AnvL"></script> 
 
 
+<style>
 
+	body {
+		font-family: verdana;
+		margin: 30px;
+	}
+	
+</style>
+	
 <script>
+	
 	
 	function factTable() {
 	   
 	    var mytable = ""
-	    mytable = mytable + "<table class='table striped'>"
+	    mytable = mytable + "<table>"
 		mytable = mytable + "<th>Country</th><th>Data</th><th>Value</th>"
 		
 	    for (i = 0; i < dbe.length; i++) {
@@ -35,6 +35,7 @@
   
 	    mydiv = document.getElementById("mytable");
 	    mydiv.innerHTML = mytable;
+		
 	}
 	
 	function myFunction(goal) {
@@ -42,8 +43,8 @@
 	  mydiv = document.getElementById("demo");
 	  mydiv.innerHTML = dbe[4].dims.GHO;
 	  var canvas = document.getElementById("myCanvas");
-	  var ctx = canvas.getContext("2d");
-  
+	  var ctx = canvas.getContext("2d");  
+	  
   	  var canarray = [];
   	  for (i = 0; i<dbe.length; i++) {
 		  if (dbe[i].dims["COUNTRY"] == "Canada" ) {
@@ -64,45 +65,101 @@
   		var x = dbe[6].Value;
 		var xcan = canarray[6].Value;
 	  }
+  
+	  // erase
+	  ctx.fillStyle = "#ffffff";
+	  ctx.fillRect(0,0,1000,100);
 	  
-	  		console.log(xcan)
-  
-	  ctx.fillStyle = "#ffffff";
-	  ctx.fillRect(0,0,1000,50);
-	  ctx.fillStyle = mycolor;
-	  ctx.fillRect(0,0,x*2,50);
-	  ctx.fillStyle = "pink";
-	  ctx.fillRect(x*2,0,xcan*2,50);
-	  ctx.fillRect(0,55,75,50);
-  
-	  ctx.fillStyle = "#ffffff";
 	  ctx.font = "15px Arial";
-	  ctx.fillText(goal + " (" + x + ")",10,25);
 	  ctx.fillStyle = "black";
-	  ctx.fillText(xcan,x*2+10,25);
-	  ctx.fillText("Canada",10,85);
+	  ctx.fillRect(0,0,12.5,50);
+	  ctx.fillStyle = "red";
+	  ctx.fillRect(12.5,0,20,50);
+	  ctx.fillStyle = "green";
+	  ctx.fillRect(32.5,0,12.5,50);
+	  //ctx.fillStyle = "#ffffff";
+	  //ctx.fillText("AF",10,30);
+	  
+	  ctx.fillStyle = mycolor;
+	  ctx.fillRect(50,0,x*2,50);
+	  
+	  ctx.fillStyle = mycolor;
+	  //ctx.fillRect(x*2,0,xcan*2,50); 
+	  ctx.fillRect(50,55,xcan*2,50); 
+	  
+	  ctx.fillStyle = "red";
+	  ctx.fillRect(0,55,12.5,50);
+	  ctx.fillStyle = "white";
+	  ctx.fillRect(12.5,55,20,50);
+	  ctx.fillStyle = "red";
+	  ctx.fillRect(32.5,55,12.5,50);
+	  //ctx.fillStyle = "pink";
+	  //ctx.fillRect(0,55,45,50);
+	  
+	  ctx.fillStyle = "#ffffff";
+	  ctx.fillText(goal + " (" + x + ")",60,25);
+	  ctx.fillStyle = "black";
+	  ctx.fillText("(" + xcan + ")",60,85);
+	  //ctx.fillText("CN",10,85);
+
 	}
+
 </script>
+		
+<body>
 	
-   <table>
-	   <tr><td>
-		   <a href="index.html">Home</a>
-           </td></tr>
-   </table
-   <h4>Afghanistan WHO Data</h4>
+	   <table>
+		   <tr><td>
+			   <a href="index.html" style="color: green">Home</a>
+	       </td></tr>
+	</table>
+	
+	<h1>Rubric</h1>
+	<p>
+		<strike>i. constructs a detailed and logical plan, which describes the efficient use of time and resources, sufficient for peers to be able to follow to create the solution</strike>
+	</p>
+	<p>
+		ii. demonstrates excellent technical skills when making the solution.
+	</p>
+	<p>
+		iii. <strike>follows the plan to create the solution,</strike> which functions as intended and is presented appropriately
+	</p>
+	<p>
+		iv. fully justifies changes made to the chosen design and plan when making the solution.
+	</p>
+	
+	<h1>Technical Skills and Innovations</h1>
+	<p>In the course of this project I have learned a lot of techniques, markup and coding. I certify that I can build a <b>EASY</b> | MEDIUM | HARD html page with <b>EASY</b> | MEDIUM | HARD CSS styling and EASY | <b>MEDIUM</b> | HARD Javascript. I believe my project is EASY | <b> MEDIUM </b> | HARD in comparison to my peers.</p>
+	<p>Here are some sketchy details of the innovations I have made</p>
+	<ol>
+		<li>variables have been used</li>
+		<li>if, else if, else used liberally in more ways than 1!</li>
+		<li>looping through data</li>
+		<li>drawing on a canvas based on data values</li>
+	</ol>
+		
+	<h1>Changes to my Design</h1>
+	<p>Due to time constraints, blah blah I have made some changes to my design specified in the <a href="dev.html">Developing ideas</a> stage.</p> <p>My old plan called for ... too lazy to make a list</p> <p>The reasons for the changes ...</p> <p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p> 
+	
+	<hr>
+	<h1>Project</h1>
+   <h2>So many ways to die</h2>
+   <h4>Afghanistan vs Canada</h4>
    <button onclick="myFunction('Infections')" >Infections</button>
-   <a onclick="myFunction('Disease')" class="waves-effect waves-light amber accent-4 btn">Disease</a>
-   <a onclick="myFunction('Injuries')" class="waves-effect waves-light green btn">Injuries</a>
+   <button onclick="myFunction('Disease')" >Disease</button>
+   <button onclick="myFunction('Injuries')">Injuries</button>
 
    <p id="demo"></p>
    <canvas id="myCanvas" width="1000" height="100">
       Your browser does not support the canvas element.
    </canvas>
 
-   <p>Awesome <a href="http://apps.who.int/gho/data/node.home" target="_blank">JSON</a> databases from WHO</p>
+  
+   <p>Awesome <a href="http://apps.who.int/gho/data/node.main.162?lang=en" target="_blank">JSON</a> database from WHO</p>
    <h3>Environmental Causes of Death Table (WHO)</h3>
    <div id="mytable">
       <script>factTable();</script>
    </div>
-
-   <p id="datatest"></p>
+   
+</body>
