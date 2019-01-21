@@ -1,16 +1,51 @@
 <html>
 
-    <!-- import your data -->
+    <!-- CSS style for canvas -->
+    <style>
+        #mycanvas {
+            width: 1000px;
+        }
+    </style>
+        
+    <!-- import your data from external file ...
+         file has variable called data equal to ...
+         an array of objects containing county data -->
     <script src="data.json"></script>
-    <div id="mydata"></div>
     
+    <!-- HTML structure of page, heading and canvas -->
+    <h1>Number of fatalities due to environmental factors</h1>
+    <canvas id="mycanvas"></canvas>
+    
+    <!-- Program to access data and draw it on canvas -->
     <script>
         
-        // get data from data.json and print on web page
+        // first element in array from dims object & COUNTRY attribute
         cname = data[0].dims.COUNTRY;
-        mydiv = document.getElementById("mydata");
-        mydiv.innerHTML = "<h1>" + cname + " " + data[0].Value + "</h1>";
-    
+        
+        // numeric data is not correctly formatted "65 147", remove space
+        strdead = data[0].Value.split(' ').join('');
+        
+        // convert string data "65147" to int data using parseInt() function
+        intdead = parseInt(strdead) / 100;
+        
+        // search web page for element id "mycanvas", store reference
+        mycantag = document.getElementById("mycanvas");
+        // get 2 dimensional drawing context from canvas tag
+        ctx = mycantag.getContext("2d");
+        
+        // make font crisp and clear
+        mycantag.width = mycantag.getBoundingClientRect().width; 
+        mycantag.height = mycantag.getBoundingClientRect().height;
+        
+        // what is happening here?
+        ctx.fillStyle = "red";
+        ctx.fillRect(0,0,intdead,50);
+        ctx.font = "25px Courier";
+        ctx.fillStyle = "white";
+        
+        // concatenate cname and strddead data (see above) and draw it
+        ctx.fillText(cname + ': ' + strdead,10,33);
+            
     </script>
     
 </html>
