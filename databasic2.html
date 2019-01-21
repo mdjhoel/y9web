@@ -1,0 +1,16 @@
+<html>
+
+    <!-- import your data -->
+    <script src="data.json"></script>
+    <div id="mydata"></div>
+    
+    <script>
+        
+        // get data from data.json and print on web page
+        cname = data[0].dims.COUNTRY;
+        mydiv = document.getElementById("mydata");
+        mydiv.innerHTML = "<h1>" + cname + " " + data[0].Value + "</h1>";
+    
+    </script>
+    
+</html>
