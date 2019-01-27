@@ -1,0 +1,81 @@
+<html>
+
+
+	<!-- HOEL ADDED TO SHOW MATERIALIZE -->
+	<header>
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	</header>
+
+    <!-- HOEL ADDED TO SHOW MATERIALIZE -->
+	<button class="waves-effect waves-light btn green" onclick="addCanada()">Brazil</button>
+
+
+    <!-- CSS style for canvas -->
+    <style>
+        #mycanvas { 
+            width: 1000px;
+        }
+    </style>
+        
+    <!-- import your data from external file ...
+         file has variable called data equal to ...
+         an array of objects containing county data -->
+    <script src="data.json"></script>
+    
+    <!-- HTML structure of page, heading and canvas -->
+    <h1>Number of fatalities due to environmental factors</h1>
+    <canvas id="mycanvas"></canvas>
+    
+    <!-- Program to access data and draw it on canvas -->
+    <script>
+        
+        // first element in array from dims object & COUNTRY attribute
+        cname = data[0].dims.COUNTRY;
+        
+        // numeric data is not correctly formatted "65 147", remove space
+        strdead = data[0].Value.split(' ').join('');
+        
+        // convert string data "65147" to int data using parseInt() function
+        intdead = parseInt(strdead) / 100;
+        
+        // search web page for element id "mycanvas", store reference
+        mycantag = document.getElementById("mycanvas");
+        // get 2 dimensional drawing context from canvas tag
+        ctx = mycantag.getContext("2d");
+        
+        // make font crisp and clear
+        mycantag.width = mycantag.getBoundingClientRect().width; 
+        mycantag.height = mycantag.getBoundingClientRect().height;
+        
+        // what is happening here?
+        ctx.fillStyle = "red";
+        ctx.fillRect(0,0,intdead,50);
+        ctx.font = "25px Courier";
+        ctx.fillStyle = "white";
+        
+        // concatenate cname and strddead data (see above) and draw it
+        ctx.fillText(cname + ': ' + strdead,10,33);
+            
+	    // HOEL ADDED TO SHOW MATERIALIZE
+		function addBrazil() {
+			
+			cname = data[207].dims.COUNTRY;
+			strdead = data[207].Value.split(' ').join('');
+			intdead = parseInt(strdead) / 100;
+	
+	        ctx.fillStyle = "green";
+	        ctx.fillRect(0,50,intdead,50);
+	        ctx.font = "25px Courier";
+	        ctx.fillStyle = "white";
+			ctx.fillText(cname + ': ' + strdead,10,80);
+			
+		}	
+			
+    </script>
+    
+</html>
